@@ -1,0 +1,10 @@
+{
+    "File": {
+        "Name": "Setup.xml",
+        "Path": "..\\Configs"
+    },
+    "Task": {
+        "Name": "Setup",
+        "Path": "\\Custom\\Windows\\"
+    }
+}

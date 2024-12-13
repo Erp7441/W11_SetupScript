@@ -16,8 +16,8 @@ function Start-Script
 
 do
 {
-    $Configuration = Get-Content "$PSScriptRoot\.config.json" | ConvertFrom-Json
-    $ExecuteScripts = Get-ChildItem -Path "$PSScriptRoot\Scripts" | Where-Object { $_.Name -in $Configuration.EnabledScripts }
+    $Configuration = Get-Content "$PSScriptRoot\..\Configs\.config.json" | ConvertFrom-Json
+    $ExecuteScripts = Get-ChildItem -Path "$PSScriptRoot\..\Scripts" | Where-Object { $_.Name -in $Configuration.EnabledScripts }
     $ExecuteScripts | ForEach-Object { Start-Script -File $_ -ErrorAction Continue }
     Start-Sleep -Seconds $Configuration.Loop.Delay
 } while ($Configuration.Loop.Enabled)
