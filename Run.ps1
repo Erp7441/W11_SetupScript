@@ -1,7 +1,23 @@
-while ($True)
+function Start-Script
 {
-    [String[]] $IncludeScripts = Get-Content "$PSScriptRoot\.EnabledScripts"
-    $ExecuteScripts = Get-ChildItem -Path "$PSScriptRoot\Scripts" | Where-Object { $_.BaseName -in $IncludeScripts }
-    $ExecuteScripts.FullName | ForEach-Object { . $_ }
-    Start-Sleep -Seconds 10
+    param(
+        [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)] [ValidateNotNullOrEmpty()] [System.IO.FileSystemInfo] $File
+    )
+    
+    switch ($File.Extension)
+    {
+        '.ps1' { . $File.FullName }
+        Default {}
+
+        # TODO:: Add more script types (maybe a manifest file which specifies interpreter e.g powershell, python, etc... and files to run with parameters)
+    }
+
 }
+
+do
+{
+    $Configuration = Get-Content "$PSScriptRoot\.config.json" | ConvertFrom-Json
+    $ExecuteScripts = Get-ChildItem -Path "$PSScriptRoot\Scripts" | Where-Object { $_.Name -in $Configuration.EnabledScripts }
+    $ExecuteScripts | ForEach-Object { Start-Script -File $_ -ErrorAction Continue }
+    Start-Sleep -Seconds $Configuration.Loop.Delay
+} while ($Configuration.Loop.Enabled)

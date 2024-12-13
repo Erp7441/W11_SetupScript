@@ -1,0 +1,11 @@
+{
+    "Loop": {
+        "Enabled": true,
+        "Delay": 10
+    },
+    "EnabledScripts": [
+        "AllowAdmin.ps1",
+        "AllowExtensions.ps1",
+        "RestoreTabs.ps1"
+    ]
+}
