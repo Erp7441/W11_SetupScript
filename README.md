@@ -26,3 +26,6 @@ Run INSTALL.cmd as admin.
 
 ## Uninstallation
 Run UNINSTALL.cmd as admin.
+
+## Moving the repository to diffrent location
+If you want to move this repository to diffrent folder on your filesystem after installation. **Firstly uninstall the program.** Move the repository and then install the program back.
