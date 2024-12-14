@@ -1,4 +1,5 @@
 # W11_SetupScript
+Windows 11 setup script. Can be configured to continuously apply the desired configuration if let's say some other policies would overwrite it.
 
 ## Configuration
 If no custom configuration is provided the install/uninstall scripts will use the default one.
